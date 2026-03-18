@@ -1,37 +1,26 @@
-#
-# Conditional build:
-%bcond_without	tests		# build without tests
-
 %define pkgname configuration
-Summary:	Pure Ruby scoped configuration files
+Summary:	Ruby configuration for your ruby programs
 Name:		ruby-%{pkgname}
-Version:	1.3.2
+Version:	1.3.4
 Release:	1
-License:	Ruby or BSD
+License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://gems.rubyforge.org/gems/%{pkgname}-%{version}.gem
-# Source0-md5:	f8ab1405e68849f007d2b9ea2e54449d
-URL:		http://codeforpeople.com/lib/ruby/configuration/
+Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	c4db42cbb3b60ca7a2c921b941ae0ce9
+URL:		https://github.com/ahoward/configuration
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Ruby configuration gem provides a mechanism for configuring Ruby
-programs with Ruby configuration files.
+Ruby configuration for your ruby programs.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
 
 %build
-# write .gemspec
 %__gem_helper spec
-
-%if %{with tests}
-# Only one and failing test in upstream
-# https://github.com/ahoward/configuration/pull/5
-%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -44,6 +33,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.rdoc LICENSE
-%{ruby_vendorlibdir}/%{pkgname}.rb
+%{ruby_vendorlibdir}/configuration.rb
+%{ruby_vendorlibdir}/configuration
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
