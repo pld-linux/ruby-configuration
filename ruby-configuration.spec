@@ -1,8 +1,8 @@
 %define pkgname configuration
-Summary:	Ruby configuration for your ruby programs
+Summary:	Configuration library for Ruby programs
 Name:		ruby-%{pkgname}
 Version:	1.3.4
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
@@ -34,5 +34,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{ruby_vendorlibdir}/configuration.rb
-%{ruby_vendorlibdir}/configuration
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
